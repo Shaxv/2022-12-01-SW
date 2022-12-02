@@ -48,8 +48,12 @@ namespace MainNameSpace {
                     }
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             Console.WriteLine($"A mátrix minimuma: {min}");
+
+            Console.WriteLine();
         }
 
         public void Max() {
@@ -61,8 +65,12 @@ namespace MainNameSpace {
                     }
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             Console.WriteLine($"A mátrix maximuma: {max}");
+
+            Console.WriteLine();
         }
 
         public void Average() {
@@ -72,8 +80,12 @@ namespace MainNameSpace {
                     sum += matrix[row, column];
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             Console.WriteLine($"A mátrix átlaga: {sum / (rows * columns)}");
+
+            Console.WriteLine();
         }
 
         public void is12() {
@@ -86,12 +98,16 @@ namespace MainNameSpace {
                     }
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             if (is12) {
                 Console.WriteLine("A mátrix tartalmazza a 12-et.");
             } else {
                 Console.WriteLine("A mátrix nem tartalmazza a 12-et.");
             }
+
+            Console.WriteLine();
         }
 
         public void SortAll(bool asc) {
@@ -124,10 +140,14 @@ namespace MainNameSpace {
                     }
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             if (asc) Console.WriteLine("A teljes rendezett mátrix növekvő sorrendbe: ");
             else Console.WriteLine("A teljes rendezett mátrix csökkenő sorrendbe: ");
             sortedMatrix.Print();
+
+            Console.WriteLine();
         }
 
         public void Sort(bool asc) {
@@ -168,10 +188,15 @@ namespace MainNameSpace {
                     }
                     break;
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             if (asc) Console.WriteLine("A mátrix sorai növekvő sorrendbe: ");
             else Console.WriteLine("A mátrix sorai csökkenő sorrendbe: ");
             sortedMatrix.Print();
+
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public void EvenOdd() {
@@ -187,19 +212,30 @@ namespace MainNameSpace {
                     }
                 }
             }
+            Console.WriteLine("Az eredeti mátrix: ");
+            this.Print();
 
             Console.Write("Páros számok: ");
-            foreach (int number in even) {
-                Console.Write($"{number}, ");
+            if (even.Count == 0) {
+                Console.Write("Nincs páros szám.");
+            } else {
+                foreach (int number in even) {
+                    Console.Write($"{number} ");
+                }
             }
 
             Console.WriteLine();
 
             Console.Write("Páratlan számok: ");
-            foreach (int number in odd) {
-                Console.Write($"{number}, ");
+            if (odd.Count == 0) {
+                Console.Write("Nincs páratlan szám.");
+            } else {
+                foreach (int number in odd) {
+                    Console.Write($"{number}, ");
+                }
             }
 
+            Console.WriteLine();
             Console.WriteLine();
         }
 
@@ -224,19 +260,71 @@ namespace MainNameSpace {
                 }
             }
 
+            Console.WriteLine("A létrehozott mátrix: ");
             matrix.Print();
 
-            matrix.Min();
-            matrix.Max();
-            matrix.Average();
-            matrix.is12();
-            matrix.EvenOdd();
+            int choice = 1;
+            while (choice != 0) {
+                Console.WriteLine("1. A mátrix minimum eleme");
+                Console.WriteLine("2. A mátrix maximum eleme");
+                Console.WriteLine("3. A mátrix átlaga");
+                Console.WriteLine("4. Található-e 12 a mátrixban");
+                Console.WriteLine("5. A mátrix sorai rendezve növekvő sorrendbe");
+                Console.WriteLine("6. A mátrix sorai rendezve csökkenő sorrendbe");
+                Console.WriteLine("7. A mátrix páros és páratlan számok");
+                Console.WriteLine("8. A teljes mátrix rendezve növekvő sorrendbe");
+                Console.WriteLine("9. A teljes mátrix rendezve csökkenő sorrendbe");
+                Console.WriteLine("0. Kilépés");
 
-            matrix.Sort(true);
-            matrix.Sort(false);
+                Console.Write("Kérem válasszon egy menüpontot: ");
+                choice = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
-            matrix.SortAll(true);
-            matrix.SortAll(false);
+                switch (choice) {
+                    case 1:
+                        matrix.Min();
+                        break;
+
+                    case 2:
+                        matrix.Max();
+                        break;
+
+                    case 3:
+                        matrix.Average();
+                        break;
+
+                    case 4:
+                        matrix.is12();
+                        break;
+
+                    case 5:
+                        matrix.Sort(true);
+                        break;
+
+                    case 6:
+                        matrix.Sort(false);
+                        break;
+                        
+                    case 7:
+                        matrix.EvenOdd();
+                        break;
+
+                    case 8:
+                        matrix.SortAll(true);
+                        break;
+
+                    case 9:
+                        matrix.SortAll(false);
+                        break;
+
+                    case 0:
+                        break;
+
+                    default:
+                        Console.WriteLine("Hibás menüpont!");
+                        break;
+                }
+            }
         }
     }
 }
